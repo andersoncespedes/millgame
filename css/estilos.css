@@ -1,0 +1,209 @@
+@font-face{
+	src:url('fonts/Berkahi Blackletter.ttf');
+	font-family: fuente_gotica;
+}
+*{
+	margin: 0;
+	padding: 0;
+		-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+body{
+	background-image:url('../img/video-games-final-fantasy-iv-golbez-square-enix-wallpaper.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position:250px 0 ;
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 100vh;
+		animation-duration: 10s;
+		font-family: arial;
+
+}
+#battle{
+	background-image: url('../Backdrop/dungeon1.png');
+	background-position: 100%;
+display: flex;
+min-height: 100vh;
+}
+.control{
+	width: 95%;
+	float: left;
+	margin-top: 25%; 
+	margin-bottom:25.5%; 
+	height: 200px;
+	padding: 20px;
+	align-self: flex-end;
+	display: flex;
+	animation-duration: 3s;
+  	animation-name: slidein;
+ 	 position: absolute;
+  	left: 30px;
+  	top:200px;
+}
+.control .vida, .habilidad{
+	width: 50%;
+	border-radius: 10px;
+	
+	margin: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 30px;background-color: #00008b;
+
+}
+.control .habilidad ul{
+	list-style: none;
+}
+.boss{
+	position: absolute;
+	top: 150px;
+	bottom: 0;
+	left: 500px;
+	right: 0;
+}
+.boss img{
+	width: 50%;
+}
+.principal{
+	width: 40%;
+	margin-left:10px; 
+}
+.container{
+	width: 100%;	font-size:30px; 
+	padding-bottom: 20px;
+	background: linear-gradient(to right, rgb(0,0,100), rgba(0,0,0,0.1));
+
+}
+.selector, footer, header, .titulo, .vida, .habilidad{
+	box-shadow: 0 0 20px white inset;
+	border:white 2px solid;
+
+}
+header, footer{
+	animation-duration: 5s;
+  animation-name: apear;
+}
+
+.selector{
+	width: 100%;
+	float: left;
+	margin-top: 25%; 
+	margin-bottom:25.5%; 
+	background-color: #00008b;
+	border:white 2px solid;
+	border-radius: 10px;
+	padding: 20px;
+	text-align: center;	animation-duration: 3s;
+  animation-name: slidein;
+
+}
+.selector ul li{
+	list-style: none;
+
+}
+.selector ul li a{
+	color: white;
+	text-decoration: none;
+}
+.titulo{
+	width: 100%;
+	border-radius: 10px;
+	background-color: #00008b;
+	border:white 2px solid;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin-top: 15%; 
+	animation-name:slidein;
+	animation-duration: 3s;
+}
+
+header{
+	font-size: 30px;
+	letter-spacing: 20px;
+	font-family: fuente_gotica;
+	text-align: center;
+	align-self: flex-start;
+	width: 100%;
+	padding:20px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #00008b;
+	border-right:white 4px solid;
+	border-bottom:white 4px solid;
+	border-left:white 4px solid;
+
+
+	color: white;
+}
+footer{
+	align-self: flex-end;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #00008b;
+	border-top:white 4px solid;
+	border-right:white 4px solid;
+	border-left:white 4px solid;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	width: 100%;
+
+}
+.señalador{
+	transition: 300ms all ease;
+	margin-right:10px; 
+}
+li:hover .señalador{
+   width: 0;
+    height: 0;
+  
+    border-left: 10px solid red;
+  
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+
+  }
+
+  to {
+    margin-left: 0%;
+    
+  }
+}
+@keyframes slideinz {
+  from {
+    margin-bottom: 100%;
+
+  }
+
+  to {
+    margin-left: 0%;
+    
+  }
+}
+@keyframes apear {
+  from {
+  opacity: 0;
+
+  }
+
+  to {
+    margin-left: 1;
+    
+  }
+}
+@keyframes apearz {
+  from {
+  opacity: 0;
+
+  }
+
+  to {
+    margin-left: 1;
+    
+  }
+}

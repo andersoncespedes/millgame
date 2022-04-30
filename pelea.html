@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MillGame</title>
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body id="battle">
+	<div class="boss">
+		<img src="Imagen2.png">
+	</div>
+	
+<div class="control">
+	<div class="vida">
+		<span id="vidaMaxima"></span> /
+		<span id="contador"></span>
+	</div>
+	<div class="habilidad">
+		<ul>
+			<li><button id="atacar">Ataque</button></li>
+			<li><button>Magia</button> </li>
+			<li><button>Elemento</button> </li>
+		</ul>
+	</div>
+</div><script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.js"></script>
+<script type="text/javascript">
+	class pelea{
+		constructor(){
+			this.poderes = ['destruccion', 'quimico', 'mierda'];
+			this.preguntas = {
+				'quien es juana de arco': 'holaf'
+			}
+			this.monstruo = {
+				vit:10,
+				minVit:0,
+				randomPower:this.poderes[0]
+			}
+		}
+		 ataque() {	
+			return this.monstruo.vit;
+		}
+	}
+	window.onload = function(){
+		var cont = new pelea();
+		var counter = cont.ataque();
+		var vidaMaxima = document.getElementById('vidaMaxima');
+
+		var iniciovit = document.getElementById('contador').innerHTML = counter;
+		var iniciovit1 = vidaMaxima.innerHTML = cont.monstruo.vit;
+		var atacar = document.getElementById('atacar');
+		console.log(cont.preguntas);
+
+		atacar.addEventListener('click', function(){
+			counter -= 2; 
+			if (counter <= cont.monstruo.minVit) {
+				counter = cont.monstruo.minVit;
+			}let vitalidadJefe = document.getElementById('contador').innerHTML = counter;
+		});
+	}
+
+	
+	
+
+</script>
+</body>
