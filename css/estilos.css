@@ -23,8 +23,13 @@ body{
 main{
 	width: 100%;
 }
+
 .red{
 animation-name:efectosFondos;
+	animation-duration: 3s;
+}
+.white{
+animation-name:efectosAtaque;
 	animation-duration: 3s;
 }
 #battle{
@@ -48,10 +53,13 @@ min-height: 100vh;
   	left: 30px;
   	top:200px;
 }
+.vidaMonstruo{
+	width: 100%;
+}
 .control .vida, .habilidad, .preguntas{
 	width: 50%;
 	border-radius: 10px;
-	
+	flex-wrap: wrap;
 	margin: 5px;
 	padding: 10px;
 	color: white;
@@ -266,6 +274,17 @@ li:hover .señalador{
 @keyframes efectosFondos {
   from {
 background: red;
+
+}
+
+  to {
+  background: rgba(0,0,0,0);
+	
+  }
+}
+@keyframes efectosAtaque {
+  from {
+background: white;
 
 }
 
