@@ -14,13 +14,18 @@ body{
 	background-image:url('../img/video-games-final-fantasy-iv-golbez-square-enix-wallpaper.jpg');
 	background-repeat: no-repeat;
 	background-size: 100%;
-	background-position:250px 0 ;
 	display: flex;
 	flex-wrap: wrap;
 	min-height: 100vh;
-		animation-duration: 10s;
-		font-family: arial;
+	font-family: arial;
 
+}
+main{
+	width: 100%;
+}
+.red{
+animation-name:efectosFondos;
+	animation-duration: 3s;
 }
 #battle{
 	background-image: url('../Backdrop/dungeon1.png');
@@ -256,5 +261,16 @@ li:hover .señalador{
 	left: 500px;
 	right: 0;
     
+  }
+}
+@keyframes efectosFondos {
+  from {
+background: red;
+
+}
+
+  to {
+  background: rgba(0,0,0,0);
+	
   }
 }
