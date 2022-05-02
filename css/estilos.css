@@ -56,6 +56,9 @@ min-height: 100vh;
 .vidaMonstruo{
 	width: 100%;
 }
+.vidaPersonaje{
+	width: 100%;
+}
 .control .vida, .habilidad, .preguntas{
 	width: 50%;
 	border-radius: 10px;
@@ -65,10 +68,43 @@ min-height: 100vh;
 	color: white;
 	font-size: 30px;
 	background-color: #00008b;
+	
 
+}
+#poder{
+	position: absolute;
+	left: 370px;
+	top: 30px;
+	border-radius: 10px;
+	color: white;
+		box-shadow: 0 0 20px white inset;
+	border:white 2px solid;
+	font-size: 30px;
+	width: 50%;
+	background-color: #00008b;
+	transition: 500ms all ease;
+	opacity: 0;
+	text-align: center;
+}
+.control .vida{
+	width: 50%;
 }
 .control .habilidad ul{
 	list-style: none;
+	width: 100%;
+	display: flex;
+}
+.control .habilidad{
+width: 50%;
+
+}
+button{
+	height: 50px;
+}
+.control .habilidad button{text-align: center;
+	margin: 4px;
+width: 48%;
+	
 }
 .boss{
 	position: absolute;
@@ -76,6 +112,7 @@ min-height: 100vh;
 	bottom: 0;
 	left: 500px;
 	right: 0;
+	transition: 3s all ease;
 		animation-name:monstruo;
 	animation-duration: 3s;
 }
@@ -95,7 +132,7 @@ min-height: 100vh;
 .selector, footer, header, .titulo, .vida, .habilidad, .preguntas{
 	box-shadow: 0 0 20px white inset;
 	border:white 2px solid;
-
+	transition: 300ms all ease;
 }
 header, footer{
 	animation-duration: 5s;
@@ -184,7 +221,7 @@ footer{
 
 }
 .respuestas:hover{
-	border: 1px white solid;
+
 }
 li:hover .señalador{
    width: 0;
