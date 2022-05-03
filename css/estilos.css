@@ -39,10 +39,8 @@ display: flex;
 min-height: 100vh;
 }
 .control{
-	width: 95%;
-	float: left;
-	margin-top: 25%; 
-	margin-bottom:25.5%; 
+	width: 100%;
+flex-wrap: wrap;
 	height: 200px;
 	padding: 20px;
 	align-self: flex-end;
@@ -50,8 +48,9 @@ min-height: 100vh;
 	animation-duration: 3s;
   	animation-name:  slidemenu ;
  	 position: absolute;
-  	left: 30px;
-  	top:200px;
+ 	 top: 550px;
+  	left: 20px;
+
 }
 .vidaMonstruo{
 	width: 100%;
@@ -62,7 +61,6 @@ min-height: 100vh;
 .control .vida, .habilidad, .preguntas{
 	width: 50%;
 	border-radius: 10px;
-	flex-wrap: wrap;
 	margin: 5px;
 	padding: 10px;
 	color: white;
@@ -88,6 +86,8 @@ min-height: 100vh;
 }
 .control .vida{
 	width: 50%;
+	display: flex;
+	margin: auto;
 }
 .control .habilidad ul{
 	list-style: none;
@@ -95,7 +95,11 @@ min-height: 100vh;
 	display: flex;
 }
 .control .habilidad{
-width: 50%;
+width: 51%;
+margin: auto;
+margin-top:10px; 
+display: flex;
+
 
 }
 button{
@@ -255,15 +259,15 @@ li:hover .señalador{
 @keyframes slidemenu {
   from {
     position: absolute;
-    	left: 30px;
-  	top:300px;
+    
+  	top:700px;
 
   }
 
   to {
    position: absolute;
-  	left: 30px;
-  	top:200px;
+  	top: 550px;
+
     
   }
 }
