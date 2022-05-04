@@ -14,7 +14,7 @@
 	</div>
 	
 <div class="control">
-	<div class="preguntas" id="preguntas">
+	<div class="preguntas" id="preguntas"><span id="countdown"></span>
 		<div id="tituloPregunta" style="text-align:center; margin-bottom: 5px; "></div>
 		<div id="respuestas" style="display: flex;flex-wrap: wrap; ">
 			<ul id="answer">
@@ -56,52 +56,115 @@
 <script type="text/javascript">
 	
 		//variables DOM
-		const controlVida = document.getElementById('vida');
-		const controlHabilidad = document.getElementById('habilidad');
-		const controlPreguntas = document.getElementById('tituloPregunta');
-		const controlRespuestas = document.getElementById('respuestas');
+		const controlVida		  = document.getElementById('vida');
+		const controlHabilidad    = document.getElementById('habilidad');
+		const controlPreguntas    = document.getElementById('tituloPregunta');
+		const controlRespuestas   = document.getElementById('respuestas');
 		const contenedorPreguntas = document.getElementById('preguntas');
-		const vidaMaxima = document.getElementById('vidaMaximaM');
-		const vidaMaximaP = document.getElementById('vidaMaximaP');
-		const contadorP = document.getElementById('contadorP');
-		const poder = document.getElementById('poder');
-		const monto = document.getElementById('monto');
-		const boss = document.getElementById('boss');
-		const nameMonster = document.getElementById('nameMonster');
+		const vidaMaxima          = document.getElementById('vidaMaximaM');
+		const vidaMaximaP         = document.getElementById('vidaMaximaP');
+		const contadorP           = document.getElementById('contadorP');
+		const poder               = document.getElementById('poder');
+		const monto               = document.getElementById('monto');
+		const boss                = document.getElementById('boss');
+		const nameMonster         = document.getElementById('nameMonster');
+		var nivelAventura         = 0;
+		var pp                    = 0;
+		
 
-		var pp      = 0;
-
-
-		const ulRespuestas = document.getElementById('answer');
+		var ulRespuestas = document.getElementById('answer');
 		
 		//niveles	
 		//preguntas 
 
-	const preguntas = [{nivel1:{
+	const preguntas = [{
 		pregunta1:'¿QUIEN ES EL MAS SEXY?',
-		respuestas:{
-			respuesta1:'Anderson Cespedes',
-			respuesta2:'Jhoan Rivero',
-			respuesta3:'Christian Rivero',
-			respuesta4:'Emilio Cespedes',
-			respuestaVerdadera: 'Anderson Cespedes'
+		respuestas:['Anderson Cespedes',
+			'Jhoan Rivero',
+			'Christian Rivero',
+			'Emilio Cespedes',
+			 'Anderson Cespedes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EL MAS SEXY?',
+		respuestas:['Anderson Cespedades',
+			'Jhoan Riasdavero',
+			'Christianasd Rivero',
+			'Emilio Cesasdapedes',
+			 'Anderson Cesasdapedes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EL MAS SEXY?',
+		respuestas:['Anderson Cespedasdsaes',
+			'Jhoan Riveadsasdro',
+			'Christian Riasdadvero',
+			'Emilio Cespxzcxzedes',
+			 'Anderson Cespvcxvedes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EcvxL MAS SEXY?',
+		respuestas:['Anderson xcvxCespedes',
+			'Jhoan Rivecxvcvxro',
+			'Christian Rxcvxvivero',
+			'Emilio Cespexvxcvzdes',
+			 'Anderson Ceszxczpedes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EL MAS SEXY?',
+		respuestas:['Anderson Cezcxzcspedes',
+			'Jhoan Rivasdadsero',
+			'Christian Rivzxczero',
+			'Emilio Cespexczcdes',
+			 'Anderson Cesvcxvpedes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EL MAS SEXY?',
+		respuestas:['Anderson Cezxczxspedes',
+			'Jhoan Risadavero',
+			'Christian Riverxzczco',
+			'Emilio Cespevcxvdes',
+			 'Anderson Cespecxvxdes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EL MAS SEXY?',
+		respuestas:['Anderson Cespexcvcdes',
+			'Jhoan Riverxcvxo',
+			'Christian Rivezxcxzro',
+			'Emilio Cespedzxces',
+			 'Anderson Ceszxcxzpedes']
+		
+	},{
+		pregunta1:'¿QUIEN ES EL MAS SEXY?',
+		respuestas:['Anderson Cespedes',
+			'Jhoan Rivero',
+			'Christian Rivero',
+			'Emilio Cespedes',
+			 'Anderson Cespedes']
+		
+	},
+	{
+		pregunta1:'¿QUIEN ES menos sexy?',
+		respuestas:[
+			'Anderds',
+		'Ja',
+			'Chd',
+			'Emds',
+			 'Anderds']
+		
+
 		}
-}
-},{nivel1:{
-	pregunta1:'¿QUIEN soy?',
-		respuestas:{
-			respuesta1:'sadasd',
-			respuesta2:'dsadsa',
-			respuesta3:'adsad',
-			respuesta4:'asdadsa',
-			respuestaVerdadera: 'nivel1.respuestas.respuesta1'}
-}}
-];
+	
+	];
 
- console.log(preguntas[1].nivel1.respuestas);
- console.log(preguntas[1].nivel1.pregunta1);
 
-	//personaje
+
+	//cuestionario
+
+		function randomAnsw(minimo, maximo){
+			return Math.round(Math.random()*(minimo-maximo) + maximo);
+		}
+	
+//personaje
 	class personaje{
 		constructor(){
 			this.monstruo = new monstruo();
@@ -120,13 +183,13 @@
 		}	
 		niveldeataque(nivel, vidaActual){
 			if (nivel == 'normal') {
-				return (vidaActual * 100) / this.estadisticas.habilidades.normal;
+				return (vidaActual * 100) / this.monstruo.estadisticas.vitMaxima + '%';
 			}
 		}
-		fuerzaDeAtaque(tipodeataque, vidaActual = this.monstruo.estadisticas.vit){
+		fuerzaDeAtaque(tipodeataque, vidaActual){
 			if (tipodeataque == 'normal') {
-				
-				return [this.estadisticas.habilidades.normal * this.estadisticas.fuerza, this.niveldeataque(tipodeataque, vidaActual) + 'px'];
+		
+				return this.estadisticas.habilidades.normal * this.estadisticas.fuerza;
 			}
 			}
 		dañoPersonaje(ataqueMonstruo){
@@ -149,6 +212,7 @@
 				return Math.round(Math.random()*(0-3) + 3);
 			} 
 			this.estadisticas = {
+				vitMaxima:13,
 				vit:13,
 				minVit:0,
 				fuerza:3,
@@ -168,77 +232,37 @@
 		//instancias
 		var cont = new monstruo();
 		var cont1 = new personaje();
-		//nivel
 	
+		//nivel
+
 //controles
 		function controles() {
-			nameMonster.innerHTML = cont.name;
-		controlVida.style.display = 'none';
+		nameMonster.innerHTML = cont.name;
+		controlVida.style.margin = '70px;';
 		controlHabilidad.style.display = 'none';
 		contenedorPreguntas.style.display = 'block';
+		var ps = preguntas.length-1;
+		var rp = randomAnsw(0, ps); 
+
+			mamas(rp);
 		}
-		
-var nivelAventura = 0;
-	window.onload = function(){
-		controles();
-		
 
-		
-		controles();
 
+		var totalTime = 30;
+		var tiempoVerdadero = 30;
+		function mamas(rp){
+			var keys = Object.keys(preguntas[rp].respuestas);
+			controlPreguntas.innerHTML = preguntas[rp].pregunta1;
+			for (let i = 0; i < keys.length-1; i++) {
+				ulRespuestas.innerHTML += "<button value= '"+ preguntas[rp].respuestas[i] + "'class = 'respuestas' onclick = 'delet(this,"+rp+");' id = 'respuestaDefinitiva"+i+"' >" + preguntas[rp].respuestas[i] +"</button>";
+		}
+	}
+		
+	window.onload = function(){	
+		controles();
 		//preguntas
-
-			var keys = Object.keys(preguntas[nivelAventura].nivel1.respuestas);
-
-			console.log(preguntas[nivelAventura].nivel1.respuestas.respuesta1);
-
-			controlPreguntas.innerHTML = preguntas[nivelAventura].nivel1.pregunta1;
-				let li = [];
-				let opciones = [];	
-
-	
-			for (var i = 0; i < keys.length-1; i++) {
-				li[i]  = document.createElement("button");
-				li[i].className = 'respuestas';
-			
-				if (i == 0) {
-					opciones[i] = document.createTextNode(preguntas[nivelAventura].nivel1.respuestas.respuesta1);	
-					li[i].setAttribute('value', preguntas[nivelAventura].nivel1.respuestas.respuesta1);
-					li[i].setAttribute('id', 'respuestaDefinitiva'+i);
-					li[i].setAttribute('onclick', 'delet(this);');
-
-
-				}
-				else if (i == 1) {
-					
-					opciones[i] = document.createTextNode(preguntas[nivelAventura].nivel1.respuestas.respuesta2);
-					li[i].setAttribute('value', preguntas[nivelAventura].nivel1.respuestas.respuesta2);
-					li[i].setAttribute('id', 'respuestaDefinitiva'+i);
-					li[i].setAttribute('onclick', 'delet(this);');
-
-				}
-				else if (i == 2) {
-					
-					opciones[i] = document.createTextNode(preguntas[nivelAventura].nivel1.respuestas.respuesta3);
-					li[i].setAttribute('value', preguntas[nivelAventura].nivel1.respuestas.respuesta3);
-					li[i].setAttribute('id', 'respuestaDefinitiva'+i);
-					li[i].setAttribute('onclick', 'delet(this);');
-
-				}
-				else if (i == 3) {
-					opciones[i] = document.createTextNode(preguntas[nivelAventura].nivel1.respuestas.respuesta4);
-					li[i].setAttribute('value', preguntas[nivelAventura].nivel1.respuestas.respuesta4);
-					li[i].setAttribute('id', 'respuestaDefinitiva'+i);
-					li[i].setAttribute('onclick', 'delet(this);');
-
-				}
-				li[i].appendChild(opciones[i]);
-			
-				 controlRespuestas.insertBefore(li[i], ulRespuestas);
-			
-			
-		}	
 		
+
 //combate
 		var counter = cont.ataque();
 		var iniciovit = document.getElementById('contadorM').innerHTML = counter;
@@ -249,17 +273,19 @@ var nivelAventura = 0;
 
 		atacar.addEventListener('click', function(){
 			let ataqueNormal = 'normal';
-			counter -= cont1.fuerzaDeAtaque(ataqueNormal, cont1.estadisticas.vit)[0];
-			console.log(cont1.fuerzaDeAtaque(ataqueNormal, cont1.estadisticas.vit)[1]);
-			monto.style.width = cont1.fuerzaDeAtaque(ataqueNormal, cont1.estadisticas.vit)[1]; 		
+			counter -= cont1.fuerzaDeAtaque(ataqueNormal, cont1.estadisticas.vit);
+			monto.style.width = cont1.niveldeataque(ataqueNormal, counter); 		
 			if (counter <= cont.estadisticas.minVit) {
 				monto.style.width = '0';
 				boss.style.opacity = 0;
 				counter = cont.estadisticas.minVit;
-			}	document.getElementById('main').className = 'red';
+			}	document.getElementById('main').className = 'white';
 			let vitalidadJefe = document.getElementById('contadorM').innerHTML = counter;
+			
 			controles();
+			
 		});
+		
 	}
 
 	function controlAtaque() {
@@ -267,43 +293,44 @@ var nivelAventura = 0;
 		controlVida.style.display = 'flex';
 		controlHabilidad.style.display = 'flex';
 	}
-	function delet(e) {
-		let daño = cont1.estadisticas.vit;
-		 
-				if (e.value == preguntas[nivelAventura].nivel1.respuestas.respuestaVerdadera) {
-						controlAtaque();
-						pp += 2;
-					}
-					else{
-						daño = cont1.dañoPersonaje(cont.randomPower());
-						poder.innerHTML = cont.randomNamePower();
-						controlAtaque();
-						poder.style.opacity = 1;
+	function delet(e,rp) {
+			let daño = cont1.estadisticas.vit;
+			pelea(e,rp);
+			totalTime = tiempoVerdadero;
+
+
+		}
+		function pelea(e,rp) {
+			if (e.value == preguntas[rp].respuestas[4]) {
+				controlAtaque();
+				pp += 2;ulRespuestas.innerHTML="";
+
+			}
+			else{
+				ulRespuestas.innerHTML="";
+
+				daño = cont1.dañoPersonaje(cont.randomPower());
+				poder.innerHTML = cont.randomNamePower();
+				controlAtaque();
+				poder.style.opacity = 1;
 						
-						document.getElementById('main').className = 'white';
-						if (daño <= cont1.estadisticas.minVit) {
-							daño = 0;
-						}
-						if (daño <= 5) {
+				document.getElementById('main').className = 'red';
+					if (daño <= cont1.estadisticas.minVit) {
+						daño = 0;
+					}
+					if (daño <= 5) {
 						contenedorPreguntas.style.background = 'red';
 						controlVida.style.background = 'red';
 						controlHabilidad.style.background = 'red';
 					}
-						contadorP.innerHTML = daño;
-						if (poder.style.opacity == 1) {
+					contadorP.innerHTML = daño;
+
+					if (poder.style.opacity == 1) {
 						setTimeout(function () {
-							
-								poder.style.opacity = 0;
-							
-							
+						poder.style.opacity = 0;	
 						}, 3000);
 					}
 					}	
-					
-		console.log(daño);
-
-
-
 		}
 
 </script>

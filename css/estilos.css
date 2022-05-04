@@ -45,18 +45,19 @@ flex-wrap: wrap;
 	padding: 20px;
 	align-self: flex-end;
 	display: flex;
+	flex-wrap: wrap;
 	animation-duration: 3s;
   	animation-name:  slidemenu ;
  	 position: absolute;
- 	 top: 550px;
+ 	 top: 530px;
   	left: 20px;
 
 }
 .vidaMonstruo{
-	width: 100%;
+	width: 50%;
 }
 .vidaPersonaje{
-	width: 100%;
+	width: 50%;
 }
 .control .vida, .habilidad, .preguntas{
 	width: 50%;
@@ -266,7 +267,7 @@ li:hover .señalador{
 
   to {
    position: absolute;
-  	top: 550px;
+  	top: 530px;
 
     
   }
