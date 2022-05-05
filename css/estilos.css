@@ -23,6 +23,12 @@ body{
 main{
 	width: 100%;
 }
+#answer{
+	width: 100%;
+}
+#monto, #montoP{
+	transition: 1s all ease;
+}
 
 .red{
 animation-name:efectosFondos;
@@ -44,13 +50,19 @@ flex-wrap: wrap;
 	height: 200px;
 	padding: 20px;
 	align-self: flex-end;
-	display: flex;
-	flex-wrap: wrap;
+	display: inline-flex;
+	padding: 10px;
+	color: white;
+	font-size: 30px;
+	background-color: #00008b;
 	animation-duration: 3s;
+		box-shadow: 0 0 20px white inset;
+	border:white 2px solid;
+	transition: 300ms all ease;
   	animation-name:  slidemenu ;
  	 position: absolute;
- 	 top: 530px;
-  	left: 20px;
+ 	 top: 500px;
+
 
 }
 .vidaMonstruo{
@@ -59,14 +71,15 @@ flex-wrap: wrap;
 .vidaPersonaje{
 	width: 50%;
 }
+#contenedorMagia{
+	width: 47%;
+	padding: 10px;
+	transition: 300ms all ease;
+	font-size: 30px;
+}
 .control .vida, .habilidad, .preguntas{
 	width: 50%;
 	border-radius: 10px;
-	margin: 5px;
-	padding: 10px;
-	color: white;
-	font-size: 30px;
-	background-color: #00008b;
 	
 
 }
@@ -134,11 +147,7 @@ width: 48%;
 	background: linear-gradient(to right, rgb(0,0,100), rgba(0,0,0,0.1));
 
 }
-.selector, footer, header, .titulo, .vida, .habilidad, .preguntas{
-	box-shadow: 0 0 20px white inset;
-	border:white 2px solid;
-	transition: 300ms all ease;
-}
+
 header, footer{
 	animation-duration: 5s;
   animation-name: apear;
@@ -212,7 +221,7 @@ footer{
 	transition: 300ms all ease;
 	margin-right:10px; 
 }
-.preguntas{
+#preguntas{
 	width: 50%;
 	margin: auto;
 }
@@ -267,7 +276,7 @@ li:hover .señalador{
 
   to {
    position: absolute;
-  	top: 530px;
+  	top: 500px;
 
     
   }
