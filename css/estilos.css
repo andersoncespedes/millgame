@@ -39,10 +39,14 @@ animation-name:efectosAtaque;
 	animation-duration: 3s;
 }
 #battle{
-	background-image: url('../Backdrop/dungeon1.png');
+	background-image: url('../Backdrop/castle.png');
 	background-position: 100%;
 display: flex;
 min-height: 100vh;
+}
+button:hover{
+	background-color: red;
+	cursor: pointer;
 }
 .control{
 	width: 100%;
@@ -58,7 +62,7 @@ flex-wrap: wrap;
 	animation-duration: 3s;
 		box-shadow: 0 0 20px white inset;
 	border:white 2px solid;
-	transition: 300ms all ease;
+	transition: 1s all ease;
   	animation-name:  slidemenu ;
  	 position: absolute;
  	 top: 500px;

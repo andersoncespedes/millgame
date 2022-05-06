@@ -13,7 +13,7 @@
 		<img src="Imagen2.png">
 	</div>
 	
-<div class="control">
+<div class="control" id="control">
 	<div class="preguntas" id="preguntas"><span id="countdown"></span>
 		<div id="tituloPregunta" style="text-align:center; margin-bottom: 5px; "></div>
 		<div id="respuestas" style="display: flex;flex-wrap: wrap; margin: auto;">
@@ -47,7 +47,7 @@
 	
 	<div class="habilidad" id="habilidad">
 		
-		<button id="atacar" value="4">Ataque</button>
+		<button id="atacar" onclick = "hechizo(this, 'normal');">Ataque</button>
 		<button id="Magia">Magia</button> 
 		<button>Elemento</button> 
 		<button>Defender</button> 
@@ -59,10 +59,54 @@
 	</div>
 </main>
 <script type="text/javascript" src="js/sistem.js"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
+	$(this).find('button')[0] = document.activeElement;
+		 $(".control").keydown(function (e) {
+	 	console.log(e.which);
+  var items = $(this).find('button'),
+  activo = document.activeElement;
+  
+  if (e.which == 39) {
+    //ciclo for que valida si NO es el último 
+    for (var i = 0; i < items.length - 1; i++) {
+      if(activo === items[i]){
+        items[i + 1].focus();
+      }
+    }
+  }
+  if (e.which == 37) {
+    //ciclo for que valida si NO es el primero
+    for (var i = 1; i < items.length; i++) {
+      if (activo === items[i]) {
+        items[i - 1].focus();
+      }
+    }
+  }
+  if (e.which == 38) {
+    //ciclo for que valida si NO es el primero
+    for (var i = 2; i < items.length; i++) {
+      if (activo === items[i]) {
+        items[i - 2].focus();
+      }
+    }
+  }
+    if (e.which == 40) {
+    //ciclo for que valida si NO es el primero
+    for (var i = 0; i < items.length; i++) {
+      if (activo === items[i]) {
+        items[i + 2].focus();
+      }
+    }
+  }
+});
+</script>
+<script type="text/javascript">
+
 	
 		//variables DOM
+		const control			  = document.getElementById('control');
+
 		const controlVida		  = document.getElementById('vida');
 		const controlHabilidad    = document.getElementById('habilidad');
 		const controlPreguntas    = document.getElementById('tituloPregunta');
@@ -98,35 +142,44 @@
 			this.monstruo = new monstruo();
 			this.estadisticas = {
 				habilidades:{
-				'normal':4,
-				'fuego':5,
-				'quimico':10,
-				'matanza':15,
-				'mutacion':20,
-				'quemadura':30,
-				'loco':50,
+				'normal':1,
+				'fuego':2,
+				'quimico':3,
+				'matanza':4,
+				'mutacion':5,
+				'quemadura':6,
+				'loco':7,
 			},
 				fuerza:1,
 				fuerzaMagica:1,
-				defensa:4,
-				maxvit:60,
-				vit:60,
+				defensa:3,
+				maxvit:15,
+				vit:15,
 				minVit:0
 			}
 
 		}	
-		niveldeataque(nivel, vidaActual){
-				return (vidaActual * 100) / this.monstruo.estadisticas.vitMaxima + '%';
-			
-		}
+		
 		fuerzaDeAtaque(tipodeataque, vidaActual){
 			this.monstruo.estadisticas.vit = vidaActual;
+			let music;
 			if (tipodeataque == 'normal') {
+				music = new Audio('sound/attack2.wav');
+				music.play();
+				music.playbackRate = 2;
 				
-				return this.estadisticas.habilidades.normal * this.estadisticas.fuerza;
+				return Math.round((this.estadisticas.habilidades.normal * this.estadisticas.fuerza) / this.monstruo.estadisticas.defensa);
 			}
 			else{
-				return tipodeataque + this.estadisticas.fuerzaMagica;
+				pp -= tipodeataque;
+				if (pp < 0) {
+					pp =0;
+				}
+				music = new Audio('sound/“J‚R.WAV');
+				music.play();
+				music.playbackRate = 2;
+				ppShow.innerHTML = pp;
+				return Math.round((tipodeataque + this.estadisticas.fuerzaMagica) / this.monstruo.estadisticas.defensaMagica);
 			}
 		}
 		dañoPersonaje(ataqueMonstruo){
@@ -145,16 +198,24 @@
 		constructor(){
 			this.name = 'Croco';
 			this.png = 'Imagen2.png';
-			this.poderes = [{'NORMAL':2}, {'DESTRUCCION':6}, {'ASESINO':10}, {'TORNADO':20}, {'M':100}, {'S':30}, {'7':50}];
+			this.poderes = [
+			{'NORMAL':2}, 
+			{'DESTRUCCION':6},
+			 {'ASESINO':10}, 
+			 {'TORNADO':14}, 
+			 {'M':12}, 
+			 {'S':16}, 
+			 {'7':20}];
 			this.random = function() {
 				return Math.round(Math.random()*(0-6) + 6);
 			} 
 			this.estadisticas = {
-				vitMaxima:60,
-				vit:60,
+				vitMaxima:10,
+				vit:10,
 				minVit:0,
 				fuerza:3,
-				
+				defensa:2,
+				defensaMagica:1
 			}
 		}
 		 ataque() {	
@@ -165,6 +226,10 @@
 		}
 		randomPower(){
 			return this.poderes[this.random()];
+		}
+		niveldeataque(nivel, vidaActual){
+				return (vidaActual * 100) / this.estadisticas.vitMaxima + '%';
+			
 		}
 	}	
 		//instancias
@@ -188,7 +253,7 @@
 				var counter = cont.ataque();	
 				var ataqueMagico = r;
 				counter -= cont1.fuerzaDeAtaque(ataqueMagico, counter);
-				monto.style.width = cont1.niveldeataque(ataqueMagico, counter); 
+				monto.style.width = cont.niveldeataque(ataqueMagico, counter); 
 				
 				if (counter <= cont.estadisticas.minVit) {
 					monto.style.width = '0';
@@ -198,7 +263,7 @@
 				document.getElementById('main').className = 'white';
 				let vitalidadJefe = document.getElementById('contadorM').innerHTML = counter;
 			
-			cont.vitalidades(counter);	
+			cont.estadisticas.vit = counter;	
 				controles();
 			
 			}
@@ -207,8 +272,13 @@
 		}
 
 		function habilidadesPersonaje() {
+		contenedorMagia.innerHTML = "<button onclick= 'controlAtaque();' style = 'padding:10px; margin:5px;'>regresar</button>";
+		let e = 0;
 			for (let i = 0; i < pp; i++) {
-				contenedorMagia.innerHTML += "<button onclick = 'hechizo(this," + Object.values(cont1.estadisticas.habilidades)[i+1] +");' style = 'padding:10px;margin:5px;' value = '"+ Object.values(cont1.estadisticas.habilidades)[i+1]+"'>"+Object.keys(cont1.estadisticas.habilidades)[i+1]+"</button>"; 
+				
+					contenedorMagia.innerHTML += "<button onclick = 'hechizo(this," + Object.values(cont1.estadisticas.habilidades)[i+1] +");' style = 'padding:10px;margin:5px;' value = '"+ Object.values(cont1.estadisticas.habilidades)[i+1]+"'>"+Object.keys(cont1.estadisticas.habilidades)[i+1]+"</button>";
+				
+				
 			}
 		}
 
@@ -225,7 +295,7 @@
 		
 	window.onload = function(){	
 		controles();	
-
+		
 //combate
 		var counter = cont.ataque();
 		var iniciovit = document.getElementById('contadorM').innerHTML = counter;
@@ -239,21 +309,6 @@
 			controlHabilidad.style.display = 'none';
 
 		});
-		atacar.addEventListener('click', function(){
-			let ataqueNormal = "normal";
-			counter -= cont1.fuerzaDeAtaque(ataqueNormal, cont1.estadisticas.vit);
-			monto.style.width = cont1.niveldeataque(ataqueNormal, counter); 	
-			cont.vitalidades(counter);	
-			if (counter <= cont.estadisticas.minVit) {
-				monto.style.width = '0';
-				boss.style.opacity = 0;
-				counter = cont.estadisticas.minVit;
-			}	document.getElementById('main').className = 'white';
-			let vitalidadJefe = document.getElementById('contadorM').innerHTML = counter;
-			
-			controles();
-			
-		});
 		
 	}
 
@@ -261,6 +316,8 @@
 		contenedorPreguntas.style.display = 'none';
 		contenedorPreguntas.style.display = 'none';
 		contenedorMagia.innerHTML = "";
+		contenedorMagia.style.display = "none";
+
 		controlVida.style.display = 'flex';
 		controlHabilidad.style.display = 'flex';
 
@@ -273,14 +330,18 @@
 	}
 		function pelea(e,rp) {
 			if (e.value == preguntas[rp].respuestas[4]) {
+				
 				controlAtaque();
-				pp += 1;
+				pp += 0.5;
 				ulRespuestas.innerHTML="";
 				contenedorMagia.innerHTML  = "";
 			}
 			else{
 				ulRespuestas.innerHTML="";
 				contenedorMagia.innerHTML  = "";
+				let s= new Audio('Sound/damage1.wav');
+				s.play();
+				s.playbackRate = 2;
 				
 				let p = cont.randomPower();
 				daño = cont1.dañoPersonaje(Object.values(p)[0])[0];
@@ -291,16 +352,25 @@
 				
 				poder.style.opacity = 1;
 				
-				montop.style.width = cont1.dañoPersonaje(Object.values(p)[0])[1] + "%";
+				montop.style.width = cont1.porcentajePoder(daño) + "%";
 				document.getElementById('main').className = 'red';
+				let music;
 					if (daño <= cont1.estadisticas.minVit) {
+						
 						daño = 0;
 						montop.style.width = "0%";
+						
+						setTimeout(function () {
+							music = new Audio('sound/FCƒGƒtƒFƒNƒgOFF.WAV');
+							music.play();
+							music.playbackRate = 2;
+							control.style.opacity = 0;
+						}, 1000);
+						
+						
 					}
-					if (daño <= 5) {
+					if (daño <= 9) {
 					
-				
-
 					}
 					contadorP.innerHTML = daño;
 
