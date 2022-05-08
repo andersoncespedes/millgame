@@ -2,6 +2,10 @@
 	src:url('fonts/Berkahi Blackletter.ttf');
 	font-family: fuente_gotica;
 }
+@font-face{
+	src:url('fonts/Minecraft.ttf');
+	font-family: minecraft;
+}
 *{cursor:url(http://www.cristalab.com/images/cursor_personalizado.cur);
 	margin: 0;
 	padding: 0;
@@ -18,11 +22,18 @@ body{
 	display: flex;
 	flex-wrap: wrap;
 	min-height: 100vh;
-	font-family: arial;
+	font-family: minecraft;
 
 }
 main{
 	width: 100%;
+}
+#Pdaño{
+	font-size: 40px;
+	position: absolute;
+	transition: 300ms all ease;
+	color:black;
+	text-anchor:20px start;
 }
 #answer{
 	width: 100%;
@@ -124,6 +135,7 @@ display: flex;
 
 }
 button{
+	font-family: minecraft;
 	height: 50px;
 	background-color: rgba(0,0,0,0);
 	color: white;
