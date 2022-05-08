@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
-<body id="battle">
+<body id="battle"><audio src="audio/FinalFantasyIV.mp3" autoplay="autoplay" loop="loop">d</audio>
 	<main id="main">
 		<div id="poder"></div>
 	
@@ -144,7 +144,7 @@
 				habilidades:{
 				'normal':1,
 				'fuego':2,
-				'quimico':3,
+				'quimico':4,
 				'matanza':4,
 				'mutacion':5,
 				'quemadura':6,
@@ -199,7 +199,7 @@
 			this.name = 'Croco';
 			this.png = 'Imagen2.png';
 			this.poderes = [
-			{'NORMAL':2}, 
+			{'PLACAJE':2}, 
 			{'DESTRUCCION':6},
 			 {'ASESINO':10}, 
 			 {'TORNADO':14}, 
@@ -233,13 +233,19 @@
 		}
 	}	
 		//instancias
-		var cont = new monstruo();
+		var cont  = new monstruo();
 		var cont1 = new personaje();
-	
+		var  song = new Audio('audio/battle1.mp3');
+				song.loop = true;
+				song.playbackRate = 2;
 		//nivel
 
 //controles
+		function music() {
+			song.play();
+		}
 		function controles() {
+			
 			nameMonster.innerHTML = cont.name;
 			controlVida.style.margin = '70px;';
 			controlHabilidad.style.display = 'none';
@@ -268,15 +274,18 @@
 			
 			}
 		function randomAnsw(minimo, maximo){
+
 			return Math.round(Math.random()*(minimo-maximo) + maximo);
 		}
 
 		function habilidadesPersonaje() {
 		contenedorMagia.innerHTML = "<button onclick= 'controlAtaque();' style = 'padding:10px; margin:5px;'>regresar</button>";
 		let e = 0;
-			for (let i = 0; i < pp; i++) {
-				
+			for (let i = 0; i < pp-0.5; i++) {
+				if (pp >= Object.values(cont1.estadisticas.habilidades)[i+1] ) {
 					contenedorMagia.innerHTML += "<button onclick = 'hechizo(this," + Object.values(cont1.estadisticas.habilidades)[i+1] +");' style = 'padding:10px;margin:5px;' value = '"+ Object.values(cont1.estadisticas.habilidades)[i+1]+"'>"+Object.keys(cont1.estadisticas.habilidades)[i+1]+"</button>";
+				}
+					
 				
 				
 			}
@@ -286,13 +295,14 @@
 		var tiempoVerdadero = 30;
 
 		function mamas(rp){
+			music();
 			var keys = Object.keys(preguntas[rp].respuestas);
 			controlPreguntas.innerHTML = preguntas[rp].pregunta1;
 			for (let i = 0; i < keys.length-1; i++) {
 				ulRespuestas.innerHTML += "<button value= '"+ preguntas[rp].respuestas[i] + "'class = 'respuestas' onclick = 'delet(this,"+rp+");' id = 'respuestaDefinitiva"+i+"' >" + preguntas[rp].respuestas[i] +"</button>";
 		}
 	}
-		
+  		
 	window.onload = function(){	
 		controles();	
 		
@@ -323,7 +333,7 @@
 
 	}
 	function delet(e,rp) {
-		
+		music();
 			let daño = cont1.estadisticas.vit;
 			pelea(e,rp);
 			totalTime = tiempoVerdadero;

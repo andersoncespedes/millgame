@@ -93,6 +93,51 @@
 		
 	},
 	{
+		pregunta1:'¿Natalicio de Simon Bolivar?',
+		respuestas:['03 de enero de 1782',
+			'13 de noviembre de 1782',
+			'24 de julio de 1783',
+			'20 de mayo de 1782',
+			 '24 de julio de 1783']
+		
+	},
+	{
+		pregunta1:"¿'Hombres de maiz' fue una novela escrita por?",
+		respuestas:['Gabriel Garcia marquez',
+			'Miguel Angel Asturias',
+			'Carlos Fuentes',
+			'Miguel Otero Silva',
+			 'Miguel Angel Asturias']
+		
+	},
+	{
+		pregunta1:'¿Dictador facista que ejercio desde 1902-1945?',
+		respuestas:['Winston Churchil',
+			'Josef Stalin',
+			'Adolf Hitler',
+			'Benito Mussolini',
+			 'Benito Mussolini']
+		
+	},
+	{
+		pregunta1:'¿Monstruo defensor de los cielos y las aves segun la biblia?',
+		respuestas:['Leviathan',
+			'Behemoth',
+			'Ziz',
+			'Chimera',
+			 'Ziz']
+		
+	},
+	{
+		pregunta1:'¿Guerrero nordico inmortal bañado en sangre de dragon?',
+		respuestas:['Siegfried',
+			'Beouwolf',
+			'Hagbard',
+			'Ragnar',
+			 'Siegfried']
+		
+	},
+	{
 		pregunta1:'¿EL RETRATO DE DORIAN GRAY FUE ESCRITO POR?',
 		respuestas:[
 			'Dorian Gray',
@@ -105,3 +150,52 @@
 		}
 	
 	];
+
+var nivel = [{
+		name:'Croco',
+		png:'Imagen2.png',
+		poderes:[
+			{'NORMAL':2}, 
+			{'DESTRUCCION':6},
+			 {'ASESINO':10}, 
+			 {'TORNADO':14}, 
+			 {'M':12}, 
+			 {'S':16}, 
+			 {'7':20}],
+			random:function() {
+				return Math.round(Math.random()*(0-6) + 6);
+			} ,
+		estadisticas:{
+				vitMaxima:10,
+				vit:10,
+				minVit:0,
+				fuerza:3,
+				defensa:2,
+				defensaMagica:1
+			}
+
+},
+	{name:'Croco',
+		png:'Imagen2.png',
+		poderes:[
+			{'NORMAL':2}, 
+			{'DESTRUCCION':6},
+			 {'ASESINO':10}, 
+			 {'TORNADO':14}, 
+			 {'M':12}, 
+			 {'S':16}, 
+			 {'7':20}],
+			random:function() {
+				return Math.round(Math.random()*(0-6) + 6);
+			} ,
+		estadisticas:{
+				vitMaxima:10,
+				vit:10,
+				minVit:0,
+				fuerza:3,
+				defensa:2,
+				defensaMagica:1
+			}
+
+}
+]

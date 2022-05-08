@@ -2,7 +2,7 @@
 	src:url('fonts/Berkahi Blackletter.ttf');
 	font-family: fuente_gotica;
 }
-*{
+*{cursor:url(http://www.cristalab.com/images/cursor_personalizado.cur);
 	margin: 0;
 	padding: 0;
 		-moz-box-sizing:border-box;
@@ -10,6 +10,7 @@
 	box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 }
+
 body{
 	background-image:url('../img/video-games-final-fantasy-iv-golbez-square-enix-wallpaper.jpg');
 	background-repeat: no-repeat;
@@ -45,7 +46,7 @@ display: flex;
 min-height: 100vh;
 }
 button:hover{
-	background-color: red;
+	
 	cursor: pointer;
 }
 .control{
@@ -60,8 +61,10 @@ flex-wrap: wrap;
 	font-size: 30px;
 	background-color: #00008b;
 	animation-duration: 3s;
-		box-shadow: 0 0 20px white inset;
-	border:white 2px solid;
+		box-shadow: 0 0 20px black ;
+	border-top:white 2px solid;
+	border-bottom:white 2px solid;
+
 	transition: 1s all ease;
   	animation-name:  slidemenu ;
  	 position: absolute;
@@ -122,6 +125,11 @@ display: flex;
 }
 button{
 	height: 50px;
+	background-color: rgba(0,0,0,0);
+	color: white;
+	border: none;
+	font-size: 25px;
+	border: 1px solid red; 
 }
 .control .habilidad button{text-align: center;
 	margin: 4px;
