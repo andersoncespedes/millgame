@@ -63,7 +63,7 @@ button:hover{
 }
 .control{
 	width: 100%;
-flex-wrap: wrap;
+	flex-wrap: wrap;
 	height: 200px;
 	padding: 20px;
 	align-self: flex-end;
@@ -73,10 +73,9 @@ flex-wrap: wrap;
 	font-size: 30px;
 	background-color: #00008b;
 	animation-duration: 3s;
-		box-shadow: 0 0 20px black ;
+	box-shadow: 0 0 20px black ;
 	border-top:white 2px solid;
 	border-bottom:white 2px solid;
-
 	transition: 1s all ease;
   	animation-name:  slidemenu ;
  	 position: absolute;
@@ -156,7 +155,7 @@ width: 48%;
 	left: 500px;
 	right: 0;
 	transition: 3s all ease;
-		animation-name:monstruo;
+	animation-name:monstruo;
 	animation-duration: 3s;
 }
 .boss img{
@@ -250,7 +249,26 @@ footer{
 	width: 50%;
 	margin: auto;
 }
-
+.listaPunt li{
+	margin-top:10px; 
+}
+#puntuacion{
+	position: absolute;
+	top: 100px;
+	bottom: 0;
+	left: 400px;
+	box-shadow: 0 0 20px black ;
+	border:white 2px solid;
+	padding: 20px;
+	right: 0;
+	transition: 3s all ease;
+	color: white;
+	opacity: 0;
+	font-size: 30px;
+	background-color: #00008b;
+	width: 50%;
+	height: 50%;
+}
 .respuestas{
 	list-style: none;
 	width: 49%;
