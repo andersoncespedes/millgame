@@ -28,6 +28,18 @@ body{
 main{
 	width: 100%;
 }
+#habilidadesNuevas{
+	width: 100%;
+
+}
+
+#habilidadesNuevas ul li{
+	list-style: none;
+	padding: 10px;
+
+	height: 50px;
+}
+
 #Pdaño{
 	font-size: 40px;
 	position: absolute;
@@ -254,20 +266,18 @@ footer{
 }
 #puntuacion{
 	position: absolute;
-	top: 100px;
-	bottom: 0;
-	left: 400px;
+	left: 370px;
+	top: 0px;
 	box-shadow: 0 0 20px black ;
 	border:white 2px solid;
 	padding: 20px;
-	right: 0;
 	transition: 3s all ease;
 	color: white;
 	opacity: 0;
 	font-size: 30px;
 	background-color: #00008b;
 	width: 50%;
-	height: 50%;
+
 }
 .respuestas{
 	list-style: none;
@@ -286,6 +296,17 @@ li:hover .señalador{
   
     border-left: 10px solid red;
   
+}
+@keyframes puntuacion {
+  from {
+    margin-top: 0;
+
+  }
+
+  to {
+    margin-top: 20px;
+    
+  }
 }
 @keyframes slidein {
   from {

@@ -84,6 +84,69 @@
 		
 	},
 	{
+		pregunta1:'¿Año de la muerte del ultimo emperador de Rusia Nikolái Aleksándrovich Románov?',
+		respuestas:['1916',
+			'1920',
+			'1918',
+			'1913',
+			 '1918']
+		
+	},
+	{
+		pregunta1:'¿Primer heroe mitologico de la historia?',
+		respuestas:['Perseo',
+			'Gilgamesh',
+			'Sanson',
+			'Sieg',
+			 'Gilgamesh']
+		
+	},
+	{
+		pregunta1:'¿La guerra de los 100 años fue un conflicto belico entre?',
+		respuestas:['Francia e inglaterra',
+			'Inglaterra y Holanda',
+			'China y Japon',
+			'Grecia y Persia',
+			 'Francia e inglaterra']
+		
+	},
+	{
+		pregunta1:'¿Reino de la muerte segun la mitologia nordica?',
+		respuestas:['Nibbleheim',
+			'Helheim',
+			'Nidavellir',
+			'Jotunheim',
+			 'Helheim']
+		
+	},
+	{
+		pregunta1:"¿Significado real de 'Amen'?",
+		respuestas:['Si Dios quisiera',
+			'Como Dios quiere',
+			'Que asi sea',
+			'Alabado sea',
+			 'Que asi sea']
+		
+	},
+	{
+		pregunta1:'¿Personaje aliado recurrente en la saga Final Fantasy?',
+		respuestas:['Cid',
+			'Gilgamesh',
+			'Garland',
+			'Caos',
+			 'Cid']
+		
+	},
+	{
+		pregunta1:'¿Quien sucedio al emperador Adriano en el puesto de emperador Romano?',
+		respuestas:['Caligula',
+			'Nerom',
+			'Severo',
+			'Marco Aurelio',
+			 'Marco Aurelio']
+		
+	},
+	{
 		pregunta1:'¿FILOSOFO GRIEGO QUE VIVIA COMO VAGABUNDO?',
 		respuestas:['Flavio Arriano',
 			'Diogenes',

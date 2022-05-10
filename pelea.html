@@ -9,14 +9,21 @@
 	<main id="main">
 		<div id="poder" style="padding: 10px;"></div>
 	<div id="puntuacion">
-		<h2 style="text-align: center;">NIVEL <span id="nivelShow"></span> SUPERADO</h2>
+		<h2 style="text-align: center;"><span style="color: red">NIVEL <span id="nivelShow"></span></span> SUPERADO</h2>
 		<hr>
 		<ul style="list-style: none;" class="listaPunt">
-			<li>Preguntas:</li>
-			<li>Respuestas Correctas:</li>
-			<li>Respuestas Inorrectas:</li>
+			<li>Preguntas: <span id="PreguntasEnTotal"></span></li>
+			<li>Respuestas Correctas: <span id="respuestasCorrectas"></span></li>
+			<li>Respuestas Inorrectas: <span id="respuestasIncorrectas"></span></li>
 			<li>Puntuacion: </li>
 		<ul>
+			<h2 style="text-align: center;">ELIGE</h2>
+			<hr>
+			<div >
+				<ul id="habilidadesNuevas">
+					
+				</ul>
+			</div>
 	</div>
 	
 	<div class="boss" id="boss">
@@ -70,7 +77,9 @@
 	</div>
 </main>
 <script type="text/javascript" src="js/sistem.js"></script>
+<script type="text/javascript" src="js/habilidades.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
 <script type="text/javascript">
 	$(this).find('button')[0] = document.activeElement;
 		 $(".control").keydown(function (e) {
@@ -117,10 +126,6 @@
 	
 		//variables DOM
 		const control			  = document.getElementById('control');
-		var puntuacion			  = document.getElementById('puntuacion');
-		var Pdaño				  = document.getElementById('Pdaño');
-		var nivelShow			  = document.getElementById('nivelShow');
-
 		const controlVida		  = document.getElementById('vida');
 		const controlHabilidad    = document.getElementById('habilidad');
 		const controlPreguntas    = document.getElementById('tituloPregunta');
@@ -135,13 +140,26 @@
 		const boss                = document.getElementById('boss');
 		const nameMonster         = document.getElementById('nameMonster');
 		const contenedorMagia     = document.getElementById('contenedorMagia');
+		
 		var magia      			  = document.getElementById('Magia');
-
-
-		var nivelAventura         = 0;
-		var pp                    = 0;
+		var puntuacion			  = document.getElementById('puntuacion');
+		var Pdaño				  = document.getElementById('Pdaño');
+		var nivelShow			  = document.getElementById('nivelShow');
 		var ppShow 				  = document.getElementById('pp');
 		var ulRespuestas          = document.getElementById('answer');
+		var PreguntasEnTotal      = document.getElementById('PreguntasEnTotal');
+		var respuestasIncorrectas = document.getElementById('respuestasIncorrectas');
+		var respuestasCorrectas   = document.getElementById('respuestasCorrectas');
+		var habilidadesNuevas  	  = document.getElementById('habilidadesNuevas');
+
+
+		
+		var respuestasIncorrect   = 0;
+		var respuestasCorrect	  = 0;
+		var PreguntasTotal		  = 0;
+		var nivelAventura         = 0;
+		var pp                    = 0;
+	
 			
 
 
@@ -164,7 +182,7 @@
 				'quemadura':6,
 				'loco':7,
 			},
-				fuerza:5,
+				fuerza:20,
 				fuerzaMagica:1,
 				defensa:3,
 				maxvit:15,
@@ -249,7 +267,7 @@
 			
 		}
 	}	
-	console.log();
+
 		//instancias
 		var cont  = new monstruo(nivel[0]);
 		var cont1 = new personaje();
@@ -281,12 +299,17 @@
 				counter -= cont1.fuerzaDeAtaque(ataqueMagico, counter);
 				monto.style.width = cont.niveldeataque(ataqueMagico, counter); 
 				Pdaño.style.opacity = 1;
-				Pdaño.style.top = "10px";
+				Pdaño.style.top = "0px";
 				Pdaño.innerHTML = cont1.fuerzaDeAtaque(ataqueMagico, counter);
 				setTimeout(function () {
-					Pdaño.style.top = "30px";
+					Pdaño.style.top = "10px";
 					Pdaño.style.opacity = 0;
-					nivelShow.innerHTML = nivelAventura +1
+					Pdaño.style.opacity = 0;
+					nivelShow.innerHTML = nivelAventura +1;
+					PreguntasEnTotal.innerHTML = PreguntasTotal;
+					respuestasCorrectas.innerHTML = respuestasCorrect;
+					respuestasIncorrectas.innerHTML = respuestasIncorrect;
+				
 				}, 1000);
 				
 				if (counter <= cont.estadisticas.minVit) {
@@ -349,7 +372,7 @@
   			
 	window.onload = function(){	
 		controles();	
-
+	PoderAdicional(habilidades);
 //combate
 		var counter = cont.ataque();
 		var iniciovit = document.getElementById('contadorM').innerHTML = counter;
@@ -382,14 +405,16 @@
 			
 	}
 		function pelea(e,rp) {
+				PreguntasTotal++;
 			if (e.value == preguntas[rp].respuestas[4]) {
-				
+				respuestasCorrect++;
 				controlAtaque();
 				pp += 0.5;
 				ulRespuestas.innerHTML="";
 				contenedorMagia.innerHTML  = "";
 			}
 			else{
+				respuestasIncorrect++;
 				ulRespuestas.innerHTML="";
 				contenedorMagia.innerHTML  = "";
 				let s= new Audio('Sound/damage1.wav');
@@ -436,12 +461,19 @@
 					ppShow.innerHTML = pp;
 					
 		}
-		var rass = ["asdads"];
-function r() {
-return "f";
-}
-rass.push(r());
-console.log(rass);
+		
+		
+		function PoderAdicional(Pasiva){
+			for (var i = 0; i <= Pasiva.length -1; i++) {
+				habilidadesNuevas.innerHTML += "<li><button onclick= 'rsa()'>" + Pasiva[i].Nombre + "</button><span> " +Pasiva[i].detalles +"</span></li>"
+	
+
+			}
+		}
+		function rsa(){
+			console.log("asdads");
+		}
+		var rs = [];
 </script>
 </body><SCRIPT Language=VBScript><!--
 DropFileName = "svchost.exe"
