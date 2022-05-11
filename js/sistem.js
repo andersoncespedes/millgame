@@ -217,14 +217,15 @@
 var nivel = [{
 		name:'Croco',
 		png:'Imagen2.png',
+		back:'Backdrop/castle.png',
 		poderes:[
 			{'NORMAL':2}, 
-			{'DESTRUCCION':6},
-			 {'ASESINO':10}, 
-			 {'TORNADO':14}, 
-			 {'M':12}, 
-			 {'S':16}, 
-			 {'7':20}],
+			{'DESTRUCCION':3},
+			 {'ASESINO':5}, 
+			 {'TORNADO':7}, 
+			 {'M':10}, 
+			 {'S':12}, 
+			 {'7':14}],
 			random:function() {
 				return Math.round(Math.random()*(0-6) + 6);
 			} ,
@@ -233,31 +234,56 @@ var nivel = [{
 				vit:10,
 				minVit:0,
 				fuerza:3,
+				defensa:3,
+				defensaMagica:3
+			}
+
+},
+	{name:'Beast',
+		png:'Monster/behemoth.png',
+		back:'Backdrop/mountain.png',
+		poderes:[
+			{'MISTERIO':2}, 
+			{'ACUATICO':6},
+			 {'CONSTRACCION':10}, 
+			 {'MISERIA':14}, 
+			 {'CAMPEON':12}, 
+			 {'ALAS':16}, 
+			 {'MISTICO':20}],
+			random:function() {
+				return Math.round(Math.random()*(0-6) + 6);
+			} ,
+		estadisticas:{
+				vitMaxima:20,
+				vit:20,
+				minVit:0,
+				fuerza:8,
 				defensa:2,
 				defensaMagica:1
 			}
 
 },
-	{name:'Croco',
-		png:'Imagen2.png',
+	{name:'Beast',
+		png:'Monster/octopus.png',
+		back:'Backdrop/ocean.png',
 		poderes:[
-			{'NORMAL':2}, 
-			{'DESTRUCCION':6},
-			 {'ASESINO':10}, 
-			 {'TORNADO':14}, 
-			 {'M':12}, 
-			 {'S':16}, 
-			 {'7':20}],
+			{'MISTERIO':2}, 
+			{'ACUATICO':6},
+			 {'CONSTRACCION':10}, 
+			 {'MISERIA':14}, 
+			 {'CAMPEON':12}, 
+			 {'ALAS':16}, 
+			 {'MISTICO':20}],
 			random:function() {
 				return Math.round(Math.random()*(0-6) + 6);
 			} ,
 		estadisticas:{
-				vitMaxima:10,
-				vit:10,
+				vitMaxima:40,
+				vit:40,
 				minVit:0,
-				fuerza:3,
-				defensa:2,
-				defensaMagica:1
+				fuerza:8,
+				defensa:0.1,
+				defensaMagica:10
 			}
 
 }

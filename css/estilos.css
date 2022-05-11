@@ -43,10 +43,11 @@ main{
 #Pdaño{
 	font-size: 40px;
 	position: absolute;
-	top: 30px;
+	top: 70px;
+	left: 600px;
 	transition: 300ms all ease;
 	color:black;
-	text-anchor:20px start;
+
 }
 #answer{
 	width: 100%;
@@ -91,7 +92,7 @@ button:hover{
 	transition: 1s all ease;
   	animation-name:  slidemenu ;
  	 position: absolute;
- 	 top: 500px;
+ 	top:550px;
 
 
 }
@@ -334,13 +335,13 @@ li:hover .señalador{
   from {
     position: absolute;
     
-  	top:700px;
+  	top:900px;
 
   }
 
   to {
    position: absolute;
-  	top: 500px;
+  	top:550px;
 
     
   }
