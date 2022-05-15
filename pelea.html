@@ -15,7 +15,7 @@
 			<li>Preguntas: <span id="PreguntasEnTotal"></span></li>
 			<li>Respuestas Correctas: <span id="respuestasCorrectas"></span></li>
 			<li>Respuestas Inorrectas: <span id="respuestasIncorrectas"></span></li>
-			<li>Puntuacion: </li>
+			<li>Puntuacion: <span id="rangoDeNivel"></span></li>
 		<ul>
 			<h2 style="text-align: center;">ELIGE</h2>
 			<hr>
@@ -100,6 +100,8 @@
 		const nameMonster         = document.getElementById('nameMonster');
 		const contenedorMagia     = document.getElementById('contenedorMagia');
 		const battle     = document.getElementById('battle');
+		const rangoDeNivel    = document.getElementById('rangoDeNivel');
+
 
 		
 		var magia      			  = document.getElementById('Magia');
@@ -190,7 +192,11 @@
 	//monstruo
 	class monstruo{
 		constructor(){
-			this.enemigo = nivel[0];
+			this.randomLevel = function(){
+				let s = nivel.length-1;
+				return Math.round(Math.random()*(0-s) + s);
+			}
+			this.enemigo = nivel[this.randomLevel()];
 			this.random = function() {
 				return Math.round(Math.random()*(0-6) + 6);
 			}
@@ -220,7 +226,8 @@
 		contadorM.innerHTML = this.enemigo.estadisticas.vit;
 		monto.style.width = "100%";
 		battle.style.background = "url('"+this.enemigo.back+"')";
-		battle.style.backgroundPosition = "100%;";
+		battle.style.backgroundPosition = "100%";
+		battle.style.minHeight = "100vh";
 		battle.style.backgroundRepeat = "no-repeat";
 		battle.style.backgroundSize = "100%";
 		}
@@ -260,7 +267,24 @@
 				monto.style.width = cont.niveldeataque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica); 
 				Pdaño.style.opacity = 1;
 				Pdaño.style.top = "50px";
-
+				var rangoNivel = (respuestasCorrect - respuestasIncorrect);
+				var as = (rangoNivel * 100) / PreguntasTotal;
+				let rango;
+				if (as == 100) {
+					rango = "S";
+				}
+				else if(as < 100 && as >= 75){
+					rango = "A";
+				}
+				else if(as < 75 && as >= 50){
+					rango = "B";
+				}
+				else if (as <50 && as >= 25){
+					rango = "C";
+				}
+				else if(as <25 && as >= 0){
+					rango = "F";
+				}
 				Pdaño.innerHTML = cont1.fuerzaDeAtaque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica);
 				console.log(cont1.fuerzaDeAtaque(ataqueMagico, counter, cont.enemigo.estadisticas.defensa,cont.enemigo.estadisticas.defensaMagica));
 				setTimeout(function () {
@@ -270,6 +294,8 @@
 					PreguntasEnTotal.innerHTML = PreguntasTotal;
 					respuestasCorrectas.innerHTML = respuestasCorrect;
 					respuestasIncorrectas.innerHTML = respuestasIncorrect;
+					rangoDeNivel.innerHTML = rango;
+					console.log(as);
 				
 				}, 1000);
 				
@@ -438,12 +464,15 @@
 			setTimeout(function(){
 				puntuacion.style.top = "0";
 				nivelAventura += (l -1);
-				cont.enemigo = nivel[nivelAventura];
+				cont.enemigo = nivel[cont.randomLevel()];
 				cont.vistas();
 				boss.style.display = "block";
 				control.style.opacity = 1;
 				control.style.display = "flex";	
 				boss.style.opacity = 1;
+				respuestasIncorrect = 0;
+				respuestasCorrect = 0;
+				PreguntasTotal = 0;
 		}, 2000);
 		}	
 	

@@ -129,6 +129,114 @@
 		
 	},
 	{
+		pregunta1:'¿Personificacion de la muerte en la mitologia Griega?',
+		respuestas:['Death',
+			'Durahan',
+			'Thanatos',
+			'Tharja',
+			 'Thanatos']
+		
+	},
+	{
+		pregunta1:'¿Primer Juego de la saga metal gear solid?',
+		respuestas:['metal gear',
+			'metal gear solid: snake eater',
+			'metal gear solid: portable ops',
+			'metal gear solid: the twin snakes',
+			 'metal gear solid: the twin snakes']
+		
+	},
+	{
+		pregunta1:'¿Primer emperador del sacro imperio Romano germanico?',
+		respuestas:['Carlo Magno',
+			'Carlos Primero',
+			'Oton I',
+			'Fransisco II',
+			 'Carlo Magno']
+		
+	},
+	{
+		pregunta1:'¿Personaje recurrente en call of duty?',
+		respuestas:['Ghost',
+			'Price',
+			'Soup',
+			'Victor',
+			 'Price']
+		
+	},
+	{
+		pregunta1:'¿Primer Juego de gta en 3 dimensiones?',
+		respuestas:['GTA 1',
+			'GTA Vice city',
+			'GTA 3',
+			'GTA san andreas',
+			 'GTA 3']
+		
+	},
+	{
+		pregunta1:'¿Primer video en youtube?',
+		respuestas:['me with the boys',
+			'making youtube',
+			'me at the zoo',
+			'cooking',
+			 'me at the zoo']
+		
+	},
+	{
+		pregunta1:'¿Primer emperador bizantino?',
+		respuestas:['Arcadio',
+			'Justiniano',
+			'Marciano',
+			'Teodosio',
+			 'Justiniano']
+		
+	},
+	{
+		pregunta1:'¿Animal mas inteligente del planeta?',
+		respuestas:['Delfin',
+			'Chimpance',
+			'elefante',
+			'Humano',
+			 'Humano']
+		
+	},
+	{
+		pregunta1:'¿esclavo que dirigio una rebelion contra el imperio Romano en el 71 a.c?',
+		respuestas:['Boudica',
+			'Spartaco',
+			'Atila',
+			'Canico',
+			 'Spartaco']
+		
+	},
+	{
+		pregunta1:'¿Dios de la guerra mitologia nordica?',
+		respuestas:['Baldr',
+			'Thor',
+			'Odin',
+			'Tyr',
+			 'Odin']
+		
+	},
+	{
+		pregunta1:'¿Dios de los bosques segun la mitologia Griega?',
+		respuestas:['Pan',
+			'Ninfa',
+			'Sefiro',
+			'Deimoss',
+			 'Pan']
+		
+	},
+	{
+		pregunta1:'¿Primer texto conocido referente a las leyes sociales de la historia?',
+		respuestas:['Koran',
+			'Tablas de Hamurabi',
+			'Biblia',
+			'Tora',
+			 'Tablas de Hamurabi']
+		
+	},
+	{
 		pregunta1:'¿Personaje aliado recurrente en la saga Final Fantasy?',
 		respuestas:['Cid',
 			'Gilgamesh',
@@ -240,7 +348,7 @@ var nivel = [{
 
 },
 	{name:'Beast',
-		png:'Monster/behemoth.png',
+		png:'Monster/dragon.png',
 		back:'Backdrop/mountain.png',
 		poderes:[
 			{'MISTERIO':2}, 
