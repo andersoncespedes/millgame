@@ -193,7 +193,7 @@
 	class monstruo{
 		constructor(){
 			this.randomLevel = 0;
-			this.enemigo = nivel[this.randomLevel()];
+			this.enemigo = nivel[nivelAventura];
 			this.random = function() {
 				return Math.round(Math.random()*(0-6) + 6);
 			}
@@ -460,7 +460,7 @@
 			puntuacion.style.opacity = 0;
 			setTimeout(function(){
 				puntuacion.style.top = "0";
-				nivelAventura += (l -1);
+				nivelAventura += 1;
 				cont.randomLevel++;
 				cont.enemigo = nivel[cont.randomLevel];
 				cont.vistas();
